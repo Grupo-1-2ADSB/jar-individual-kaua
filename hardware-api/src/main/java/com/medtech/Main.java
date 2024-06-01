@@ -4,6 +4,7 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.medtech.dao.ComponenteDAO;
 import com.medtech.dao.UsuarioDAO;
+import com.medtech.individual.Gmailer;
 import com.medtech.inovacao.MemoryUsageFinisher;
 import com.medtech.model.componente.armazenamento.Armazenamento;
 import com.medtech.model.componente.cpu.MonitoramentoCpu;
@@ -15,7 +16,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
         Looca looca = new Looca();
@@ -94,10 +95,14 @@ public class Main {
                 System.out.println("Armazenamento em uso: " + String.format("%.2f", armazenamentoEmUso) + " GB");
                 System.out.println();
 
+                memoria.verificaMemoria();
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
                 System.out.println("Erro ao inserir dados no banco de dados: " + e.getMessage());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
     }
