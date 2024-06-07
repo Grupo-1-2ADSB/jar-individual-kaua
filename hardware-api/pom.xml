@@ -48,6 +48,41 @@
         </dependency>
 
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.0</version> <!-- Use a versão mais recente disponível -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20211205</version> <!-- or the latest version available -->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.slack.api/bolt -->
+        <dependency>
+            <groupId>com.slack.api</groupId>
+            <artifactId>bolt</artifactId>
+            <version>1.39.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.slack.api/bolt-servlet -->
+        <dependency>
+            <groupId>com.slack.api</groupId>
+            <artifactId>bolt-servlet</artifactId>
+            <version>1.39.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version> <!-- ou a versão mais recente disponível -->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.bertrandmartel</groupId>
+            <artifactId>speed-test-lib</artifactId>
+            <version>1.32.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client-jetty</artifactId>
             <version>1.34.1</version>
@@ -98,5 +133,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
 </project>

@@ -21,12 +21,27 @@ public class MonitoramentoCpu extends Hardware {
     }
 
     public double getCpuUsoGHz() {
-        double cpuFreqGHz = getCpuFreqGHz();
-        return (cpuFreqGHz * cpuUso) / 100; // Calcula o uso em GHz baseado na frequência máxima
+        return (getCpuFreqGHz() * cpuUso) / 100; // Calcula o uso em GHz baseado na frequência máxima
     }
 
     public String getIdCPU(){
         return cpuId;
     }
 
+    public double getCpuFreqTotalGHz() {
+        return getCpuFreqGHz(); // Frequência total da CPU em GHz
+    }
+
+    public double getCpuUsoPorcentagem() {
+        double usoPorcentagem = (getCpuFreqGHz() * cpuUso) / getCpuFreqTotalGHz(); // Calcula a porcentagem de uso
+        return usoPorcentagem;
+    }
+
+    public void setCpuFreq(Long cpuFreq) {
+        this.cpuFreq = cpuFreq;
+    }
+
+    public void setCpuUso(Double cpuUso) {
+        this.cpuUso = cpuUso;
+    }
 }

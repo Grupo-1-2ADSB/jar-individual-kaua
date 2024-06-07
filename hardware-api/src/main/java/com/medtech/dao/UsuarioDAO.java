@@ -5,30 +5,24 @@ import com.medtech.model.usuario.Usuario;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class UsuarioDAO {
+    private final ConexaoBanco conexaoBanco;
 
-    public Usuario retornaUsuario(String userVerificar, String senhaVerificar) throws SQLException {
-
-        ConexaoBanco conexaoBanco = new ConexaoBanco();
-        JdbcTemplate conexao = conexaoBanco.getJdbcTemplate();
-
-        Usuario usuario = null;
-        try {
-             usuario = conexao.queryForObject("SELECT * FROM usuario WHERE nomeUser = '%s' AND senha = '%s'".formatted(userVerificar, senhaVerificar), new BeanPropertyRowMapper<>(Usuario.class));
-        } catch (Exception e) {
-            return usuario;
-        }
-
-        if (usuario != null) {
-            return usuario;
-        }
-
-        return null;
+    public UsuarioDAO() {
+        this.conexaoBanco = new ConexaoBanco();
     }
 
+    public Usuario retornaUsuario(String userVerificar, String senhaVerificar) {
+        Usuario usuario = null;
+        try {
+            JdbcTemplate sqlServerConexao = conexaoBanco.getSqlServerJdbcTemplate();
+            String query = "SELECT * FROM usuario WHERE nomeUser = ? AND senha = ?";
+            usuario = sqlServerConexao.queryForObject(query, new Object[]{userVerificar, senhaVerificar}, new BeanPropertyRowMapper<>(Usuario.class));
+            return usuario;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 }
+
+
