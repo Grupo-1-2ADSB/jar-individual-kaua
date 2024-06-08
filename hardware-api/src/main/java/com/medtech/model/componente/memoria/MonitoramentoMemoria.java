@@ -8,6 +8,7 @@ import com.medtech.model.componente.Hardware;
 public class MonitoramentoMemoria extends Hardware {
     private static Looca looca = new Looca();
     private static Memoria memoria = looca.getMemoria();
+
     private static final long INTERVALO_ALERTA = 10 * 60 * 1000; // 10 minutos
     private static long ultimoAlerta = 0;
 
@@ -15,6 +16,7 @@ public class MonitoramentoMemoria extends Hardware {
 
     public MonitoramentoMemoria() throws Exception {
     }
+
 
     public double getMemoriaEmUsoGB() {
         return memoria.getEmUso() / (1024.0 * 1024.0 * 1024.0);
