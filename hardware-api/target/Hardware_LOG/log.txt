@@ -1,0 +1,1 @@
+2024-06-16 18:40:00 - Falha no login para o usuário: Desconhecido
